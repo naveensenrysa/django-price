@@ -20,7 +20,7 @@ class ProductModelView(viewsets.ModelViewSet):
 class ScrapeAPIView(APIView):
     def get(self, request):
         scrapes = Scrape.objects.all()
-        serializer = ScrapeSerializer(scrapes, many=True)
+        serializer = ScrapePostSerializer(scrapes, many=True)
         return Response(serializer.data, status=200)
 
     def post(self, request, id=None):
