@@ -62,3 +62,17 @@ class ScrapeDetailAPIView(APIView):
             else:
                 return Response(serializer.errors, status=404)
         return Response(scrapes_data, status=201)
+
+
+class PriceModelAPIView(viewsets.ModelViewSet):
+    queryset = Productsndh.objects.all()
+    serializer_class = ProductNDHSerializer
+
+    @action(detail=True, methods=["GET"])
+    def prices(self, request, pk=None):
+        product = self.get_object()
+        prices = Scrape.objects.filter(product=product)
+        serializer = ScrapePriceSerializer(prices, many=True)
+        return Response(serializer.data, status=200)
+
+

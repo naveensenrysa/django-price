@@ -30,6 +30,21 @@ class ScrapeSerializer(serializers.ModelSerializer):
             "url",
             "is_active",
         ]
+class ScrapePriceSerializer(serializers.ModelSerializer):
+    prices = PriceSerializer(many=True)
+    id = serializers.IntegerField(required=False)
+
+    class Meta:
+        model = Scrape
+        fields = [
+            "id",
+            "marketplace_type",
+            "url",
+            "is_active",
+            "created_at",
+            "updated_at",
+            "prices"
+        ]
 
 class ScrapePostSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
@@ -112,4 +127,3 @@ class ProductNDHSerializer(serializers.ModelSerializer):
                 scrape.delete()
 
         return instance
-    

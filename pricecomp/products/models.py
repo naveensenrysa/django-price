@@ -84,9 +84,9 @@ class Scrape(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    # @property
-    # def prices(self):
-    #     return self.price_set.all()
+    @property
+    def prices(self):
+        return self.price_set.all()
 
 
    

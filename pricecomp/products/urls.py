@@ -6,10 +6,16 @@ from rest_framework.routers import DefaultRouter, SimpleRouter
 
 router = DefaultRouter()
 router.register('api/v1/products', ProductModelView)
+router.register('api/v1/prices', PriceModelAPIView)
 
 
 
 ndhproducts_list_view = ProductModelView.as_view({
+    "get": "list",
+    "post": "create",
+})
+
+price_list_view = PriceModelAPIView.as_view({
     "get": "list",
     "post": "create",
 })
